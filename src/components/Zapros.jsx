@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 export const Zapros = () => {
   const [users, setUsers] = useState([]);
-  
 
   async function getUsers() {
     try {
@@ -17,7 +16,9 @@ export const Zapros = () => {
       throw new Error(error);
     }
   }
-  const handleTernary = () => {};
+  const handleTernary = () => {
+    setUsers(item.species === "Human" ? "green" : "red");
+  };
 
   useEffect(() => {
     getUsers();
@@ -30,7 +31,7 @@ export const Zapros = () => {
           <div className="div">
             <h1>{item.name}</h1>
 
-            <i onSubmit={handleTernary()}>{item.species}</i>
+            <i onSubmit={() => handleTernary(item.id)}>{item.species}</i>
             <b>{item.gender}</b>
           </div>
         </div>
@@ -43,10 +44,11 @@ const GlobalStyle = styled.div`
   flex-wrap: wrap;
   .div {
     width: 200px;
-    height: 100px;
-    border: 1px solid black;
-    color: white;
+    height: 150px;
+    border: 3px solid black;
+    color: black;
     display: flex;
     flex-direction: column;
+    border-radius: 10px;
   }
 `;
